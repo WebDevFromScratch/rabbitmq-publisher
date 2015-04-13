@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'fetcher'
 
 RATES = '{
   "EUR": 1.22,
@@ -7,14 +6,13 @@ RATES = '{
 }'
 
 describe Fetcher do
-  let(:fetcher) { Fetcher.new }
-  before { allow(fetcher).to receive(:get_rates_from_open_exchange) { RATES } }
+  before { allow(Fetcher).to receive(:get_rates_from_open_exchange) { RATES } }
 
   describe '#fetch_currencies' do
-    before { fetcher.fetch_currencies }
+    before { Fetcher.fetch_currencies }
 
     it 'returns the last Currency instance' do
-      expect(fetcher.fetch_currencies).to eq(Currency.last)
+      expect(Fetcher.fetch_currencies).to eq(Currency.last)
     end
 
     context 'first request' do
@@ -27,7 +25,7 @@ describe Fetcher do
     context 'request within an hour of the previous request' do
       before do
         Timecop.freeze(59.minutes.from_now)
-        fetcher.fetch_currencies
+        Fetcher.fetch_currencies
       end
 
       after { Timecop.return }
@@ -40,7 +38,7 @@ describe Fetcher do
     context 'request after more than an hour of the previous request' do
       before do
         Timecop.freeze(61.minutes.from_now)
-        fetcher.fetch_currencies
+        Fetcher.fetch_currencies
       end
 
       after { Timecop.return }
