@@ -15,15 +15,18 @@ namespace :rabbitmq do
 
     ch = conn.create_channel
 
-    x = ch.fanout("currencies.fanout")
+    x1 = ch.fanout("currencies.fanout")
+    x2 = ch.direct("currencies.direct", )
 
     q1 = ch.queue("currencies.queue_1", durable: true)
     q2 = ch.queue("currencies.queue_2", durable: true)
     q3 = ch.queue("currencies.queue_3", durable: true)
+    q4 = ch.queue("currencies.acknowledgements", durable: true)
 
     q1.bind("currencies.fanout")
     q2.bind("currencies.fanout")
     q3.bind("currencies.fanout")
+    q4.bind("currencies.direct", routing_key: "acknowledgements")
 
     conn.stop
   end
