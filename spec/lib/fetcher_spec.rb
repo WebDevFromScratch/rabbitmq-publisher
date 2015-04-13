@@ -1,6 +1,5 @@
 require 'rails_helper'
 require 'fetcher'
-require 'pry'
 
 RATES = '{
   "EUR": 1.22,
