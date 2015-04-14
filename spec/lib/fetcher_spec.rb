@@ -6,7 +6,7 @@ RATES = '{
 }'
 
 describe Fetcher do
-  before { allow(Fetcher).to receive(:get_rates_from_open_exchange) { RATES } }
+  before { allow(Fetcher).to receive(:parse_rates) { RATES } }
 
   describe '.fetch_currencies' do
     before { Fetcher.fetch_currencies }
