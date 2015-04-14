@@ -16,7 +16,7 @@ namespace :rabbitmq do
     ch = conn.create_channel
 
     x1 = ch.fanout("currencies.fanout")
-    x2 = ch.direct("currencies.direct", )
+    x2 = ch.direct("currencies.direct")
 
     q1 = ch.queue("currencies.queue_1", durable: true)
     q2 = ch.queue("currencies.queue_2", durable: true)
