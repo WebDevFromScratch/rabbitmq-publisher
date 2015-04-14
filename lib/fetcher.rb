@@ -12,7 +12,7 @@ class Fetcher
   private
 
   def self.parse_rates
-    JSON.parse(open_exchange)
+    JSON.parse(get_rates)
   end
 
   def self.get_rates
