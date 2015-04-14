@@ -8,7 +8,7 @@ RATES = '{
 describe Fetcher do
   before { allow(Fetcher).to receive(:get_rates_from_open_exchange) { RATES } }
 
-  describe '#fetch_currencies' do
+  describe '.fetch_currencies' do
     before { Fetcher.fetch_currencies }
 
     it 'returns the last Currency instance' do
