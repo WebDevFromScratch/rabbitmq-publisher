@@ -4,6 +4,8 @@ class Publisher
     x.publish(message)
   end
 
+  private
+
   def self.channel
     @channel ||= connection.create_channel
   end
