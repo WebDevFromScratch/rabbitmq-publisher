@@ -2,6 +2,7 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require File.expand_path('../config/application', __FILE__)
+require 'sneakers/tasks'
 
 Rails.application.load_tasks
 
@@ -28,6 +29,6 @@ namespace :rabbitmq do
     q3.bind("currencies.fanout")
     q4.bind("currencies.direct", routing_key: "acknowledgements")
 
-    conn.stop
+    conn.close
   end
 end
