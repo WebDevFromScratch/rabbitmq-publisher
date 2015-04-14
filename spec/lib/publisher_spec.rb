@@ -10,18 +10,13 @@ MESSAGE = '{
 
 describe Publisher do
   describe '.publish' do
-    let(:fanout) { double('fanout', publish: MESSAGE) }
-    let(:channel) { double('channel', fanout: fanout) }
-
     before do
       allow(Publisher).to receive(:message) { MESSAGE }
-      allow(Publisher).to receive(:channel) { channel }
+      Publisher.publish
     end
 
-    it 'should publish a correct message to correct fanout' do
-      Publisher.publish
-
-      expect(fanout).to have_received(:publish).with(MESSAGE)
+    it 'returns an object of a Bunny class' do
+      expect(Publisher.publish).to be_instance_of(Bunny::Exchange)
     end
   end
 end

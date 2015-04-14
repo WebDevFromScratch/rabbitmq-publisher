@@ -18,6 +18,6 @@ class Publisher
 
   def self.message
     fetcher_output = Fetcher.fetch_currencies
-    { uuid: fetcher_output.uuid, rates: fetcher_output.rates['rates'] }
+    { uuid: fetcher_output.uuid, rates: fetcher_output.rates['rates'] }.to_json
   end
 end
