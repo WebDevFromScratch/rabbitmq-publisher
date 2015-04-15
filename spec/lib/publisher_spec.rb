@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-MESSAGE = '{
+MESSAGE = {
   uuid: "some-randomly-generated-uuid",
   rates: {
     "AUD": 1.22,
     "PLN": 0.33
   }
-}'
+}.to_json
 
 describe Publisher do
   describe '.publish' do

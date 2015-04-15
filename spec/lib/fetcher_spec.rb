@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RATES = '{
+RATES = {
   "EUR": 1.22,
   "PLN": 0.33
-}'
+}.to_json
 
 describe Fetcher do
   before { allow(Fetcher).to receive(:parse_rates) { RATES } }
