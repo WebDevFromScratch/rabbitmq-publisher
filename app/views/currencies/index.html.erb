@@ -1,0 +1,18 @@
+<h1>CURRENCIES STATUS</h1>
+
+<table class="currencies_table">
+  <tr>
+    <th>UUID</th>
+    <th>Consumer 1</th>
+    <th>Consumer 2</th>
+    <th>Consumer 3</th>
+  </tr>
+  <% @currencies.each do |currency| %>
+    <tr>
+      <td><%= currency.uuid %></td>
+      <td><%= currency.consumer_1 %></td>
+      <td><%= currency.consumer_2 %></td>
+      <td><%= currency.consumer_3 %></td>
+    </tr>
+  <% end %>
+</table>
