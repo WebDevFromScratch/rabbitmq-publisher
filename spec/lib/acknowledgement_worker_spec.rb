@@ -2,9 +2,8 @@ require 'rails_helper'
 
 describe AcknowledgementWorker do
   describe '#work' do
-    let(:currency) { Currency.last }
+    let(:currency) { Currency.create }
     let(:acknowledgement_worker) { AcknowledgementWorker.new }
-    before { Currency.create }
 
     context 'when a Currency is found' do
       let(:message) { { id: 1, uuid: currency[:uuid] }.to_json }
@@ -12,7 +11,7 @@ describe AcknowledgementWorker do
       it 'correctly updates proper `consumer_:id` attribute' do
         acknowledgement_worker.work(message)
 
-        expect(Currency.find(currency[:id])[:consumer_1]).to eq(true)
+        expect(currency.reload.consumer_1).to eq(true)
       end
     end
 
