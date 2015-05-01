@@ -18,6 +18,12 @@ describe AcknowledgementWorker do
     context 'when a Currency is not found' do
       let(:message) { { id: 1, uuid: 'some_fake_uuid' }.to_json }
 
+      it 'sends an Airbrake notice' do
+        expect(Airbrake).to receive(:notify).with({error_class: 'SendingError'})
+
+        acknowledgement_worker.work(message)
+      end
+
       context 'and there were no more than 5 requeues' do
         it 'returns :requeue' do
           5.times { acknowledgement_worker.work(message) }

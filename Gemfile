@@ -13,6 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'figaro'
 gem 'bunny', '>= 1.7.0'
 gem 'sneakers'
+gem 'airbrake'
 
 group :development, :test do
   gem 'byebug'

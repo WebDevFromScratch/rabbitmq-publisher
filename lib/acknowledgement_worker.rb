@@ -12,6 +12,7 @@ class AcknowledgementWorker
       currency.update_attribute("consumer_#{consumer_id}", true)
       ack!
     else
+      Airbrake.notify(error_class: 'SendingError')
       requeue_or_reject
     end
   end
